@@ -1,0 +1,14 @@
+{
+  "name": "flypaper",
+  "version": "1.0.0",
+  "description": "API to track and store project issues and bugs.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Chris Patenaude",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
