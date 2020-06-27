@@ -2,13 +2,19 @@
   "name": "flypaper",
   "version": "1.0.0",
   "description": "API to track and store project issues and bugs.",
-  "main": "app.js",
+  "main": "src/app.js",
   "scripts": {
+    "start": "nodemon",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Chris Patenaude",
   "license": "ISC",
   "dependencies": {
+    "body-parser": "^1.19.0",
+    "dotenv": "^8.2.0",
     "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
   }
 }
