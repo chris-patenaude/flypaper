@@ -1,28 +1,19 @@
-const passport = require("passport");
-const Auth0Strategy = require("passport-auth0");
-const config = require("../config");
+const jwt = require('express-jwt');
+const jwksRsa = require('jwks-rsa');
+const {auth0} = require('../config');
 
-const strategy = new Auth0Strategy(
-  {
-    domain: config.auth0.domain,
-    clientID: config.auth0.clientId,
-    clientSecret: config.auth0.clientSecret,
-    callbackURL: config.auth0.callbackURL,
-  },
-  (accessToken, refreshToken, extraParams, profile, done) => {
-    return done(null, profile);
-  }
-);
+const checkJwt = jwt({
+  secret: jwksRsa.expressJwtSecret({
+    cache: true,
+    rateLimit: true,
+    jwksRequestsPerMinute: 5,
+    jwksUri: `https://${auth0.domain}/.well-known/jwks.json`
+  }),
+  audience: auth0.apiID,
+  issuer: `https://${auth0.domain}/`,
+  algorithms: ['RS256']
+});
 
-module.exports = async (app) => {
-  passport.use(strategy);
-  passport.serializeUser((user, done) => {
-    done(null, user);
-  });
-  passport.deserializeUser((user, done) => {
-    done(null, user);
-  });
-
-  app.use(passport.initialize());
-  app.use(passport.session());
-};
+module.exports = app => {
+  app.use(checkJwt)
+}
