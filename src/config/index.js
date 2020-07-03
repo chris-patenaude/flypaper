@@ -11,13 +11,12 @@ if (!dotenv.config('../.env')) {
 // export a configuration object
 module.exports = {
   port: parseInt(process.env.PORT, 10),
-  databaseURL: process.env.DATASTORE_URI,
   api: {
     prefix: "/api",
-    routes: {
-      user: "/user",
-      issues: "/issues",
-      project: "/project",
+    resources: {
+      user: "user",
+      issues: "issues",
+      project: "project",
     },
   },
   auth0: {

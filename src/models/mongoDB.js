@@ -1,5 +1,5 @@
 const { MongoMemoryServer } = require("mongodb-memory-server");
-const { MongoClient } = require("mongodb");
+const { MongoClient, ObjectID } = require("mongodb");
 
 let database = null;
 
@@ -19,5 +19,6 @@ async function getDatabase() {
 
 module.exports = {
   getDatabase,
-  startDatabase
+  startDatabase,
+  ObjectID
 }
