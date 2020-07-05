@@ -1,6 +1,5 @@
-const { body } = require("express-validator");
-
 const { check } = require("express-validator");
+
 const validateNewIssue = [
   check(
     "summary",
@@ -18,29 +17,18 @@ const validateNewIssue = [
     .isLength({ min: 1, max: 2048 })
     .trim()
     .escape(),
-  check(
-    "author",
-    "Invalid user id in 'author' field"
-  )
+  check("author", "Invalid user id in 'author' field")
     .exists()
     .isString()
     .trim()
     .escape(),
-  check(
-    "created",
-    "Invalid date/time format, please use: TODO"
-  )
-    .exists()
-    .isDate()
-    .trim()
-    .escape(),
-  check(
-    "project",
-    "Invalid project id in 'project' field"
-  )
+  check("project", "Invalid project id in 'project' field")
     .exists()
     .isString()
     .trim()
     .escape(),
-
 ];
+
+module.exports = {
+  validateNewIssue,
+};
